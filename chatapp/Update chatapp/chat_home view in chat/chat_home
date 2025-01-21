@@ -1,0 +1,6 @@
+from django.contrib.auth.decorators import login_required
+
+@login_required
+def chat_home(request):
+    users = User.objects.exclude(id=request.user.id)
+    return render(request, "chat/home.html", {"users": users})
